@@ -6,8 +6,15 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'My Cite' });
 });
 
-router.get('/:msg', function (req, res, next) {
-  res.render('index', { title: req.params.msg });
+
+
+router.get('/:cats?', function (req, res, next) {
+  res.render('index', { title: "cats", name: "Bismar" });
 });
+
+//router.get('/ca+ts ', function (req, res, next) {
+// res.render('index', { title: "caaaaaaaaaa....", name: "Kendra" });
+//});
+
 
 module.exports = router;
