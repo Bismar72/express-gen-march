@@ -20,6 +20,31 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//middleware: no path->
+//run for every request that reaches this line
+
+app.use((req, res, next) => {
+
+  console.log(req.cookies.user);
+
+
+  if (req.query.u != undefined) {
+    req.login = {
+      username: req.query.u.toLowerCase().trim(),
+      auth: true
+    };
+  } else {
+    req.login = {
+      username: null,
+      auth: false
+    };
+  }
+
+  next();
+
+
+});
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
